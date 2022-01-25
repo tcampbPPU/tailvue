@@ -5,7 +5,7 @@ export interface ToastAction {
   /* Button Label */
   label: string
   /* Executed upon click */
-  action: Function
+  action: (...args:any[]) => any
 }
 
 
@@ -15,7 +15,7 @@ export interface ToastProps {
   /** Different types show different icons and colors */
   type?: ToastType
   /** Hide the timeout progress bar, default: true */
-  progress?: Boolean
+  progress?: boolean
   /** Specify a timeout in seconds, 0 = infinite */
   timeout?: number
   primary?: ToastAction

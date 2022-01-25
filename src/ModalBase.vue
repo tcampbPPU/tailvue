@@ -1,5 +1,5 @@
 <template>
-  <div class="fixed z-10 inset-0 overflow-y-auto" id="ModalBase">
+  <div id="ModalBase" class="fixed z-10 inset-0 overflow-y-auto">
     <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
       <transition
         enter-active-class="ease-out duration-300"
@@ -7,9 +7,10 @@
         enter-to-class="opacity-100"
         leave-active-class="ease-in duration-200"
         leave-class="opacity-100"
-        leave-to-class="opacity-0">
-        <div class="fixed inset-0 transition-opacity" v-if="active" @click="destroy">
-          <div class="absolute inset-0 bg-black opacity-75"></div>
+        leave-to-class="opacity-0"
+      >
+        <div v-if="active" class="fixed inset-0 transition-opacity" @click="destroy">
+          <div class="absolute inset-0 bg-black opacity-75" />
           <div class="fixed top-0 right-0 p-3">
             <div class="p-3 cursor-pointer rounded-full transition ease-in-out duration-150 hover:bg-gray-800">
               <Icon icon="mdi-close" class="w-6 h-6 text-gray-200 dark:text-gray-400" />
@@ -24,14 +25,16 @@
         enter-to-class="opacity-100 translate-y-0 sm:scale-100"
         leave-active-class="ease-in duration-200"
         leave-class="opacity-100 translate-y-0 sm:scale-100"
-        leave-to-class="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95">
+        leave-to-class="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+      >
         <div
           v-if="active"
           class="inline-block align-bottom bg-white dark:bg-gray-800 rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:w-full sm:p-6"
           :class="[innerClass, maxWidth]"
           role="dialog"
           aria-modal="true"
-          aria-labelledby="modal-headline">
+          aria-labelledby="modal-headline"
+        >
           <slot />
         </div>
       </transition>

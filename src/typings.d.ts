@@ -23,7 +23,7 @@ declare const FormToggle: DefineComponent<{
 }>
 
 declare const ModalBase: DefineComponent<{
-  destroyed: Function
+  destroyed: (...args:any[]) => any
 }>
 
 declare function install(): void;

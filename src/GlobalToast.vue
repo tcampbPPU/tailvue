@@ -12,7 +12,8 @@
       <div
         v-if="active && !primary"
         :class="{'max-w-sm': !wide, 'max-w-3xl': wide}"
-        class="relative w-full bg-white dark:bg-gray-800 shadow-lg rounded-lg pointer-events-auto ring-1 ring-black ring-opacity-5 overflow-hidden">
+        class="relative w-full bg-white dark:bg-gray-800 shadow-lg rounded-lg pointer-events-auto ring-1 ring-black ring-opacity-5 overflow-hidden"
+      >
         <global-toast-progress v-if="progress && timeout" :style="progressStyle" />
         <div class="rounded-lg shadow-xs overflow-hidden z-100">
           <div class="p-4">
@@ -22,10 +23,10 @@
               </div>
               <div class="ml-3 w-0 flex-1 pt-0.5">
                 <p v-if="title" class="text-sm leading-5 font-medium">{{ title }}</p>
-                <p :class="{'mt-1': title}" class="text-sm leading-5" v-html="message"></p>
+                <p :class="{'mt-1': title}" class="text-sm leading-5" v-html="message" />
               </div>
               <div class="ml-4 flex-shrink-0 flex mt-0.5">
-                <global-toast-close  @close="destroy(true)"/>
+                <global-toast-close @close="destroy(true)" />
               </div>
             </div>
           </div>
@@ -44,7 +45,7 @@
             </div>
             <div class="w-full">
               <p v-if="title" class="text-sm leading-5 font-medium text-gray-900 dark:text-gray-300">{{ title }}</p>
-              <p :class="{'mt-1': title}" class="text-sm leading-5 text-gray-500" v-html="message"></p>
+              <p :class="{'mt-1': title}" class="text-sm leading-5 text-gray-500" v-html="message" />
             </div>
           </div>
           <div class="flex">
@@ -82,16 +83,18 @@
                 <global-toast-icons :type="type" />
               </div>
               <div class="w-0 flex-1 flex justify-between">
-                <p class="w-0 flex-1 text-sm leading-5" v-html="message"></p>
+                <p class="w-0 flex-1 text-sm leading-5" v-html="message" />
                 <button
                   type="button"
                   class="ml-3 flex-shrink-0 rounded-md text-sm font-medium text-indigo-600 dark:text-indigo-400 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                   @click="primaryAction"
-                >{{ primary.label }}</button>
+                >
+                  {{ primary.label }}
+                </button>
               </div>
               <div class="ml-4 flex-shrink-0 flex">
                 <button class="inline-flex text-gray-400 focus:outline-none focus:text-gray-500 transition ease-in-out duration-150" @click="destroy">
-                  <global-toast-close  @close="destroy(true)"/>
+                  <global-toast-close @close="destroy(true)" />
                 </button>
               </div>
             </div>
@@ -103,7 +106,6 @@
 </template>
 
 <script lang="ts" setup>
-import { Icon } from '@iconify/vue'
 import { removeElement } from './utils'
 import { computed, getCurrentInstance, onMounted, PropType, ref } from 'vue'
 import GlobalToastIcons from './GlobalToastIcons.vue'

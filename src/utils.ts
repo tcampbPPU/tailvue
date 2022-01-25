@@ -11,7 +11,6 @@ export function removeElement (el: HTMLElement|undefined) {
 export function spawn (id: string, props: ModalProps|ToastProps, Component: ComponentOptionsWithObjectProps, classes?: string[]) {
   const el = document.createElement('div')
   if (classes) classes.forEach(c => el.classList.add(c))
-  return createApp(defineComponent(Component), props as unknown as Record<string, unknown>).mount(
-    document?.getElementById(id)?.appendChild(el) as Element
-)
+  return createApp(defineComponent(Component), props as unknown as Record<string, unknown>)
+   .mount(document?.getElementById(id)?.appendChild(el) as Element)
 }

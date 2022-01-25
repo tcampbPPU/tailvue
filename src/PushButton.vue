@@ -19,7 +19,7 @@ const props = defineProps({
   pingColor: {
     type: String,
     default: 'bg-indigo-500',
-  }
+  },
 })
 
 const isActive = computed(() => props.state === 'active')
@@ -42,30 +42,30 @@ const currentTheme = computed((): PushButtonTheme|undefined => {
 })
 
 function click(): void {
-  if (isActive) emit('click')
+  if (isActive.value) emit('click')
 }
 </script>
 
 <template>
   <button
-      type="button"
-      class="relative inline-flex items-center"
-      :class="[sizes[size], currentTheme.primary, currentTheme.dark, cursor, isActive ? currentTheme.active : currentTheme.disabled ]"
-      @click="click"
+    type="button"
+    class="relative inline-flex items-center"
+    :class="[sizes[size], currentTheme.primary, currentTheme.dark, cursor, isActive ? currentTheme.active : currentTheme.disabled ]"
+    @click="click"
   >
     <slot />
     <span
-        v-if="ping"
-        class="absolute top-0 right-0 -mr-1 -mt-1 z-10"
+      v-if="ping"
+      class="absolute top-0 right-0 -mr-1 -mt-1 z-10"
     >
       <span class="flex w-3 h-3 relative">
         <span
-            class="animate-ping absolute inline-flex h-full w-full rounded-full opacity-75"
-            :class="pingColor"
+          class="animate-ping absolute inline-flex h-full w-full rounded-full opacity-75"
+          :class="pingColor"
         />
         <span
-            class="relative inline-flex rounded-full h-3 w-3"
-            :class="pingColor"
+          class="relative inline-flex rounded-full h-3 w-3"
+          :class="pingColor"
         />
       </span>
     </span>
