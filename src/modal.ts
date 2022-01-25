@@ -12,6 +12,6 @@ export function useModal (): TailvueModal {
     show (props: ModalProps|string) {
       if (typeof props === 'string') props = { title: props }
       return spawn('modals', props, GlobalModal as unknown as ComponentOptionsWithObjectProps)
-    }
+    },
   }
 }

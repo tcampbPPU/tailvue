@@ -3,17 +3,18 @@
     <div class="sm:flex sm:items-center">
       <div
         :class="typeColors[type]"
-        class="mx-auto flex-shrink-0 self-start flex items-center justify-center h-12 w-12 rounded-full sm:mx-0 sm:h-10 sm:w-10">
-        <Icon icon="mdi-check" v-if="type === 'success'" class="h-5 w-5 text-green-500" />
-        <Icon icon="bi-info-lg" v-if="type === 'info'" class="h-5 w-5 text-blue-500" />
-        <Icon icon="mdi-exclamation-thick" v-if="type === 'danger'" class="h-5 w-5 text-red-500" />
-        <Icon icon="mdi-exclamation-thick" v-if="type === 'warning'" class="h-5 w-5 text-yellow-500" />
+        class="mx-auto flex-shrink-0 self-start flex items-center justify-center h-12 w-12 rounded-full sm:mx-0 sm:h-10 sm:w-10"
+      >
+        <Icon v-if="type === 'success'" icon="mdi-check" class="h-5 w-5 text-green-500" />
+        <Icon v-if="type === 'info'" icon="bi-info-lg" class="h-5 w-5 text-blue-500" />
+        <Icon v-if="type === 'danger'" icon="mdi-exclamation-thick" class="h-5 w-5 text-red-500" />
+        <Icon v-if="type === 'warning'" icon="mdi-exclamation-thick" class="h-5 w-5 text-yellow-500" />
       </div>
       <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
-        <h3 v-if="title" class="text-lg leading-6 font-medium text-gray-900 dark:text-gray-300 mb-1" id="modal-headline">
+        <h3 v-if="title" id="modal-headline" class="text-lg leading-6 font-medium text-gray-900 dark:text-gray-300 mb-1">
           {{ title }}
         </h3>
-        <p v-if="body" class="text-sm leading-5" v-html="body"></p>
+        <p v-if="body" class="text-sm leading-5" v-html="body" />
       </div>
     </div>
     <div v-if="primary" class="mt-5 sm:mt-4 sm:flex sm:flex-row-reverse">
@@ -22,7 +23,7 @@
         ref="primaryRef"
         class="flex w-full rounded-md shadow-sm sm:ml-3 sm:w-auto"
         :theme="primary.theme"
-        @click.native="action('primary')"
+        @click="action('primary')"
       >
         {{ primary.label }}
       </push-button>
@@ -30,7 +31,7 @@
         v-if="secondary"
         class="mt-3 flex w-full rounded-md shadow-sm sm:mt-0 sm:w-auto"
         :theme="secondary.theme"
-        @click.native="action('secondary')"
+        @click="action('secondary')"
       >
         {{ secondary.label }}
       </push-button>
@@ -67,7 +68,7 @@ const props = defineProps({
 })
 
 const active = ref(false)
-const primaryRef = ref<null|Object & { $el: HTMLButtonElement }>(null)
+const primaryRef = ref<null|InstanceType<typeof PushButton> & { $el: HTMLButtonElement }>(null)
 const modalBaseRef = ref<InstanceType<typeof ModalBase>|null>(null)
 const typeColors:Record<ModalType, string> = {
   success: 'bg-green-100 dark:bg-green-900',
@@ -84,9 +85,9 @@ onMounted(() => {
 })
 
 async function action (type: 'primary'|'secondary') {
-  if (modalBaseRef) {
+  if (modalBaseRef.value)
     modalBaseRef?.value?.destroy()
-  }
+
   if (type === 'primary' && props.primary)
     props.primary.action()
   if (type === 'secondary' && props.secondary)

@@ -5,7 +5,7 @@ export type ModalType = 'success'|'info'|'danger'|'warning'
 export interface ModalButton {
   label: string
   theme: PushButtonThemeName
-  action: Function
+  action: (...args:any[]) => any
 }
 
 export interface ModalProps {
